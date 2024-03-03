@@ -1,4 +1,4 @@
-name: Deploy to AWS with Terraform
+name: Deploy na AWS com Terraform
 
 on:
   push:
@@ -13,7 +13,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Configure AWS Credentials Action For GitHub Actions
+      - name: Configura AWS Credentials Action para as GitHub Actions
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_KEY }}

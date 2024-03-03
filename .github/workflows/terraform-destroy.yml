@@ -1,7 +1,7 @@
 name: Terraform Destroy
 
 on:
-  workflow_dispatch: # Isso permite que você execute manualmente o fluxo de trabalho
+  workflow_dispatch: # Permite executar o workflow manualmente
 
 jobs:
   tf-destroy:
