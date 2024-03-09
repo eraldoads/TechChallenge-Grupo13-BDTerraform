@@ -4,6 +4,11 @@ Este repositório é dedicado à infra banco de dados gerenciáveis com Terrafor
 
 O deploy de todos os recursos é realizado pelo Github Actions a partir dos arquivos Terraform.
 
+## 🖥️ Grupo 13 - Integrantes
+🧑🏻‍💻 *<b>RM352133</b>*: Eduardo de Jesus Coruja </br>
+🧑🏻‍💻 *<b>RM352316</b>*: Eraldo Antonio Rodrigues </br>
+🧑🏻‍💻 *<b>RM352032</b>*: Luís Felipe Amengual Tatsch </br>
+
 ## ☑️ Modelo E/R
 Optamos pelo banco de dados relacional, pois, desta forma, temos uma representação das entidades e seus relacionamentos. Além disso, mantemos a integridade referencial com as chaves primárias e estrangeiras, evitando dados duplicados e inconsistências.
 
