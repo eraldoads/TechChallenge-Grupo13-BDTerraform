@@ -1,4 +1,8 @@
+# TechChallenge-Grupo13-BDTerraform
+
 Este repositório é dedicado à infra banco de dados gerenciáveis com Terraform, com a finalidade de incorporar aprimoramentos baseados nas melhores práticas de CI/CD para a API.
+
+O deploy de todos os recursos é realizado pelo Github Actions a partir dos arquivos Terraform.
 
 ## ☑️ Modelo E/R
 Optamos pelo banco de dados relacional, pois, desta forma, temos uma representação das entidades e seus relacionamentos. Além disso, mantemos a integridade referencial com as chaves primárias e estrangeiras, evitando dados duplicados e inconsistências.
