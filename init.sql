@@ -4,8 +4,7 @@ CREATE TABLE Pedido (
   DataPedido datetime NOT NULL,
   StatusPedido text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   ValorTotal float NOT NULL,
-  PRIMARY KEY (IdPedido),
-  FOREIGN KEY (IdCliente) REFERENCES Cliente(IdCliente)
+  PRIMARY KEY (IdPedido)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 CREATE TABLE Combo (
@@ -20,8 +19,7 @@ CREATE TABLE ComboProduto (
   IdProduto int NOT NULL,
   ComboId int DEFAULT NULL,
   Quantidade int NOT NULL,
-  PRIMARY KEY (IdProdutoCombo),
-  FOREIGN KEY (IdProduto) REFERENCES Produto(IdProduto),
+  PRIMARY KEY (IdProdutoCombo),  
   FOREIGN KEY (ComboId) REFERENCES Combo(IdCombo)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
