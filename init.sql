@@ -1,12 +1,3 @@
-CREATE TABLE Cliente (
-  IdCliente int NOT NULL AUTO_INCREMENT,
-  Nome varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  Sobrenome varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  CPF text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  Email text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  PRIMARY KEY (IdCliente)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
-
 CREATE TABLE Pedido (
   IdPedido int NOT NULL AUTO_INCREMENT,
   IdCliente int NOT NULL,
@@ -15,23 +6,6 @@ CREATE TABLE Pedido (
   ValorTotal float NOT NULL,
   PRIMARY KEY (IdPedido),
   FOREIGN KEY (IdCliente) REFERENCES Cliente(IdCliente)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
-
-CREATE TABLE Categoria (
-  IdCategoria int NOT NULL AUTO_INCREMENT,
-  NomeCategoria text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci,
-  PRIMARY KEY (IdCategoria)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
-
-CREATE TABLE Produto (
-  IdProduto int NOT NULL AUTO_INCREMENT,
-  NomeProduto varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  ValorProduto float NOT NULL,
-  IdCategoria int DEFAULT NULL,
-  DescricaoProduto varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  ImagemProduto longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci,
-  PRIMARY KEY (IdProduto),
-  FOREIGN KEY (IdCategoria) REFERENCES Categoria(IdCategoria)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 CREATE TABLE Combo (
@@ -62,6 +36,57 @@ CREATE TABLE Pagamento (
   FOREIGN KEY (IdPedido) REFERENCES Pedido(IdPedido)
 )ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
+
+-- Database microsserviço Cliente
+CREATE DATABASE BD_PKFF_CLIENTES;
+CREATE USER 'pkcliente'@'%' IDENTIFIED BY 'Fast.FoodCli';
+GRANT ALL PRIVILEGES ON BD_PKFF_CLIENTES.* TO 'pkcliente'@'%';
+
+USE BD_PKFF_CLIENTES;
+
+CREATE TABLE Cliente (
+  IdCliente int NOT NULL AUTO_INCREMENT,
+  Nome varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  Sobrenome varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  CPF text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  Email text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  PRIMARY KEY (IdCliente)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+
+-- Clientes
+INSERT INTO Cliente (Nome, Sobrenome, CPF, Email) VALUES ('João', 'das Coves Esfomeado', '87908638015', 'joao@esfomeado.com.br');
+INSERT INTO Cliente (Nome, Sobrenome, CPF, Email) VALUES ('Maria', 'das Coves Esfomeado', '54817882093', 'maria@esfomeado.com.br');
+INSERT INTO Cliente (Nome, Sobrenome, CPF, Email) VALUES ('Chaves', 'do Oito', '86866288002', 'chaves@chaves.com.br');
+INSERT INTO Cliente (Nome, Sobrenome, CPF, Email) VALUES ('Chiquinha', 'Chorona', '96790122044', 'chiquinha@chaves.com.br');
+INSERT INTO Cliente (Nome, Sobrenome, CPF, Email) VALUES ('Madruga', 'Senhor', '18936055070', 'srmadruga@chaves.com.br');
+INSERT INTO Cliente (Nome, Sobrenome, CPF, Email) VALUES ('Kiko', 'Pipipipi', '23466838096', 'kiko@chaves.com.br');
+INSERT INTO Cliente (Nome, Sobrenome, CPF, Email) VALUES ('Florinda', 'Dona', '40096924055', 'srbarriga@chaves.com.br');
+INSERT INTO Cliente (Nome, Sobrenome, CPF, Email) VALUES ('Barriga', 'Senhor', '46048527071', 'donaflorinda@chaves.com.br');
+INSERT INTO Cliente (Nome, Sobrenome, CPF, Email) VALUES ('Nhonho', 'Barriga', '45818274004', 'nhonho@chaves.com.br');
+
+-- Database microsserviço Produto
+CREATE DATABASE BD_PKFF_PRODUTOS;
+CREATE USER 'pkproduto'@'%' IDENTIFIED BY 'Fast.FoodProd';
+GRANT ALL PRIVILEGES ON BD_PKFF_PRODUTOS.* TO 'pkproduto'@'%';
+
+USE BD_PKFF_PRODUTOS;
+
+CREATE TABLE Categoria (
+  IdCategoria int NOT NULL AUTO_INCREMENT,
+  NomeCategoria text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci,
+  PRIMARY KEY (IdCategoria)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+
+CREATE TABLE Produto (
+  IdProduto int NOT NULL AUTO_INCREMENT,
+  NomeProduto varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  ValorProduto float NOT NULL,
+  IdCategoria int DEFAULT NULL,
+  DescricaoProduto varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  ImagemProduto longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci,
+  PRIMARY KEY (IdProduto),
+  FOREIGN KEY (IdCategoria) REFERENCES Categoria(IdCategoria)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 -- Massa de dados para testes
 -- Categorias
@@ -94,14 +119,3 @@ INSERT INTO Produto (NomeProduto, ValorProduto, IdCategoria, DescricaoProduto, I
 INSERT INTO Produto (NomeProduto, ValorProduto, IdCategoria, DescricaoProduto, ImagemProduto) VALUES ('Torta de Limão', 0.99, 4, 'Torta de limão refrescante e azedinha, com uma base crocante de biscoito e cobertura de merengue. Uma sobremesa clássica e irresistível.', 'https://example.com/imagens/torta_de_limao.jpg');
 INSERT INTO Produto (NomeProduto, ValorProduto, IdCategoria, DescricaoProduto, ImagemProduto) VALUES ('Pudim de Leite', 0.99, 4, 'Pudim de leite macio e caramelizado, feito com ingredientes frescos e de alta qualidade. Uma sobremesa tradicional e reconfortante para todos os paladares.', 'https://example.com/imagens/pudim_de_leite.jpg');
 INSERT INTO Produto (NomeProduto, ValorProduto, IdCategoria, DescricaoProduto, ImagemProduto) VALUES ('Cheesecake de Frutas Vermelhas', 0.99, 4, 'Cheesecake cremoso e suave com uma cobertura de frutas vermelhas frescas. Uma sobremesa elegante e saborosa para os amantes de doces.', 'https://example.com/imagens/cheesecake_de_frutas_vermelhas.jpg');
-
--- Clientes
-INSERT INTO Cliente (Nome, Sobrenome, CPF, Email) VALUES ('João', 'das Coves Esfomeado', '87908638015', 'joao@esfomeado.com.br');
-INSERT INTO Cliente (Nome, Sobrenome, CPF, Email) VALUES ('Maria', 'das Coves Esfomeado', '54817882093', 'maria@esfomeado.com.br');
-INSERT INTO Cliente (Nome, Sobrenome, CPF, Email) VALUES ('Chaves', 'do Oito', '86866288002', 'chaves@chaves.com.br');
-INSERT INTO Cliente (Nome, Sobrenome, CPF, Email) VALUES ('Chiquinha', 'Chorona', '96790122044', 'chiquinha@chaves.com.br');
-INSERT INTO Cliente (Nome, Sobrenome, CPF, Email) VALUES ('Madruga', 'Senhor', '18936055070', 'srmadruga@chaves.com.br');
-INSERT INTO Cliente (Nome, Sobrenome, CPF, Email) VALUES ('Kiko', 'Pipipipi', '23466838096', 'kiko@chaves.com.br');
-INSERT INTO Cliente (Nome, Sobrenome, CPF, Email) VALUES ('Florinda', 'Dona', '40096924055', 'srbarriga@chaves.com.br');
-INSERT INTO Cliente (Nome, Sobrenome, CPF, Email) VALUES ('Barriga', 'Senhor', '46048527071', 'donaflorinda@chaves.com.br');
-INSERT INTO Cliente (Nome, Sobrenome, CPF, Email) VALUES ('Nhonho', 'Barriga', '45818274004', 'nhonho@chaves.com.br');
