@@ -3,7 +3,7 @@ name: Deploy na AWS com Terraform
 on:
   push:
     branches:
-      - feature/felipe-fase4
+      - main
 
 jobs:
   deploy:
