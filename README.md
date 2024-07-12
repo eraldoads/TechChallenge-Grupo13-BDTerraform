@@ -14,18 +14,27 @@ Na fase 3, tínhamos um único banco de dados com todas as tabelas representando
 
 ![image](https://github.com/eraldoads/TechChallenge-Grupo13-BDTerraform/assets/47857203/ea3ab9e3-e5da-4275-b973-2561b4078352)
 
-Na fase 4, realizamos o desmembramento dos processos relacionados aos cadastros de cient, produtos e de pagamento em microsserviços, os quais passaram a ter seus próprios bancos de dados, possibilitando um desacoplamento e diminuindo as dependências.
+Na fase 4, realizamos o desmembramento dos processos relacionados aos cadastros de Cliente, Produtos e de Pagamento em microsserviços, os quais passaram a ter seus próprios bancos de dados, possibilitando um desacoplamento e diminuindo as dependências.
 
 <b>Banco piklesdb - Monolito</b>
 
-<b>Banco piklesdb - Monolito</b>
+![image](https://github.com/eraldoads/TechChallenge-Grupo13-BDTerraform/assets/47857203/ebbb3a70-b989-4810-b8de-14a77942a0dd)
 
-<b>Banco piklesdb - Monolito</b>
+<b>Banco BD_PKFF_CLIENTES - Microsserviço Cliente</b>
 
+![image](https://github.com/eraldoads/TechChallenge-Grupo13-BDTerraform/assets/47857203/53177085-e7f7-4c76-bbe1-0ce8c5d05341)
 
-Para tal, utilizamos o serviço RDS da Amazon para instanciar o banco de dados MySQL.
+<b>Banco BD_PKFF_PRODUTOS - Microsserviço Produto</b>
 
-Mesmo sendo um banco de dados que não permite escalonamento horizontal, somente vertical, atenderá perfeitamente às necessidades do negócio da lanchonete.
+![image](https://github.com/eraldoads/TechChallenge-Grupo13-BDTerraform/assets/47857203/32613f95-fcbb-4915-a2e0-2638ba484a1e)
+
+Podemos observar que a estrutura das tabelas se mantém a mesma e os relacionamentos continuam sendo realizados por meio dos Id's, porém, cada microsserviço possui seu banco de dados distinto, não havendo chaves estrangeiras entre tabelas de bancos diferentes. Esse desacoplamento possibilita que os bancos estejam em instâncias físicas diferentes do MySQL em um ambiente produtivo, ou mesmo, a mudança do banco de um determinado microsserviço de MySQL para SQL Server, por exemplo, diminuindo os riscos e impactos de uma possível migração.
+
+Para efeitos de demonstração no TechChallenge, utilizaremos a mesma instância física para os três bancos de dados no MySQL.
+
+O microsserviço de Pagamento utilizará o banco MongoDB, o qual será instanciado por outro repositório.
+
+Para criarmos a instância do MySQL, utilizamos o serviço RDS da Amazon.
 
 ![image](https://github.com/eraldoads/TechChallenge-Grupo13-BDTerraform/assets/47857203/8c25e04c-2c36-4c86-98e8-c1dc9aab1806)
 
