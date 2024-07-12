@@ -1,3 +1,10 @@
+-- Database microsserviço Pedido
+CREATE DATABASE BD_PKFF_PEDIDOS;
+CREATE USER 'pkpedido'@'%' IDENTIFIED BY 'Fast.FoodPed';
+GRANT ALL PRIVILEGES ON BD_PKFF_PEDIDOS.* TO 'pkpedido'@'%';
+
+USE BD_PKFF_PEDIDOS;
+
 CREATE TABLE Pedido (
   IdPedido int NOT NULL AUTO_INCREMENT,
   IdCliente int NOT NULL,
@@ -22,17 +29,6 @@ CREATE TABLE ComboProduto (
   PRIMARY KEY (IdProdutoCombo),  
   FOREIGN KEY (ComboId) REFERENCES Combo(IdCombo)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
-
-CREATE TABLE Pagamento (
-  IdPagamento INT NOT NULL AUTO_INCREMENT,
-  StatusPagamento VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'Pendente',
-  ValorPagamento FLOAT NOT NULL,
-  MetodoPagamento VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'QRCode',
-  DataPagamento DATETIME NOT NULL,
-  IdPedido INT NOT NULL,
-  PRIMARY KEY (IdPagamento),
-  FOREIGN KEY (IdPedido) REFERENCES Pedido(IdPedido)
-)ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 
 -- Database microsserviço Cliente
