@@ -1,3 +1,10 @@
+-- Database microsserviço Pedido
+CREATE DATABASE BD_PKFF_PEDIDOS;
+CREATE USER 'pkpedido'@'%' IDENTIFIED BY 'Fast.FoodPed';
+GRANT ALL PRIVILEGES ON BD_PKFF_PEDIDOS.* TO 'pkpedido'@'%';
+
+USE BD_PKFF_PEDIDOS;
+
 CREATE TABLE Pedido (
   IdPedido int NOT NULL AUTO_INCREMENT,
   IdCliente int NOT NULL,
@@ -23,17 +30,6 @@ CREATE TABLE ComboProduto (
   FOREIGN KEY (ComboId) REFERENCES Combo(IdCombo)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
-CREATE TABLE Pagamento (
-  IdPagamento INT NOT NULL AUTO_INCREMENT,
-  StatusPagamento VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'Pendente',
-  ValorPagamento FLOAT NOT NULL,
-  MetodoPagamento VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'QRCode',
-  DataPagamento DATETIME NOT NULL,
-  IdPedido INT NOT NULL,
-  PRIMARY KEY (IdPagamento),
-  FOREIGN KEY (IdPedido) REFERENCES Pedido(IdPedido)
-)ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
-
 
 -- Database microsserviço Cliente
 CREATE DATABASE BD_PKFF_CLIENTES;
@@ -48,19 +44,23 @@ CREATE TABLE Cliente (
   Sobrenome varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   CPF text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   Email text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  Endereco text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NULL,
+  NumeroTelefone text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NULL,
+  Ativo bit NOT NULL,
+  DataInativacao datetime NULL,
   PRIMARY KEY (IdCliente)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 -- Clientes
-INSERT INTO Cliente (Nome, Sobrenome, CPF, Email) VALUES ('João', 'das Coves Esfomeado', '87908638015', 'joao@esfomeado.com.br');
-INSERT INTO Cliente (Nome, Sobrenome, CPF, Email) VALUES ('Maria', 'das Coves Esfomeado', '54817882093', 'maria@esfomeado.com.br');
-INSERT INTO Cliente (Nome, Sobrenome, CPF, Email) VALUES ('Chaves', 'do Oito', '86866288002', 'chaves@chaves.com.br');
-INSERT INTO Cliente (Nome, Sobrenome, CPF, Email) VALUES ('Chiquinha', 'Chorona', '96790122044', 'chiquinha@chaves.com.br');
-INSERT INTO Cliente (Nome, Sobrenome, CPF, Email) VALUES ('Madruga', 'Senhor', '18936055070', 'srmadruga@chaves.com.br');
-INSERT INTO Cliente (Nome, Sobrenome, CPF, Email) VALUES ('Kiko', 'Pipipipi', '23466838096', 'kiko@chaves.com.br');
-INSERT INTO Cliente (Nome, Sobrenome, CPF, Email) VALUES ('Florinda', 'Dona', '40096924055', 'srbarriga@chaves.com.br');
-INSERT INTO Cliente (Nome, Sobrenome, CPF, Email) VALUES ('Barriga', 'Senhor', '46048527071', 'donaflorinda@chaves.com.br');
-INSERT INTO Cliente (Nome, Sobrenome, CPF, Email) VALUES ('Nhonho', 'Barriga', '45818274004', 'nhonho@chaves.com.br');
+INSERT INTO Cliente (Nome, Sobrenome, CPF, Email, Ativo, DataInativacao) VALUES ('João', 'das Coves Esfomeado', '87908638015', 'joao@esfomeado.com.br', true, null);
+INSERT INTO Cliente (Nome, Sobrenome, CPF, Email, Ativo, DataInativacao) VALUES ('Maria', 'das Coves Esfomeado', '54817882093', 'maria@esfomeado.com.br', true, null);
+INSERT INTO Cliente (Nome, Sobrenome, CPF, Email, Ativo, DataInativacao) VALUES ('Chaves', 'do Oito', '86866288002', 'chaves@chaves.com.br', true, null);
+INSERT INTO Cliente (Nome, Sobrenome, CPF, Email, Ativo, DataInativacao) VALUES ('Chiquinha', 'Chorona', '96790122044', 'chiquinha@chaves.com.br', true, null);
+INSERT INTO Cliente (Nome, Sobrenome, CPF, Email, Ativo, DataInativacao) VALUES ('Madruga', 'Senhor', '18936055070', 'srmadruga@chaves.com.br', true, null);
+INSERT INTO Cliente (Nome, Sobrenome, CPF, Email, Ativo, DataInativacao) VALUES ('Kiko', 'Pipipipi', '23466838096', 'kiko@chaves.com.br', true, null);
+INSERT INTO Cliente (Nome, Sobrenome, CPF, Email, Ativo, DataInativacao) VALUES ('Florinda', 'Dona', '40096924055', 'srbarriga@chaves.com.br', true, null);
+INSERT INTO Cliente (Nome, Sobrenome, CPF, Email, Ativo, DataInativacao) VALUES ('Barriga', 'Senhor', '46048527071', 'donaflorinda@chaves.com.br', true, null);
+INSERT INTO Cliente (Nome, Sobrenome, CPF, Email, Ativo, DataInativacao) VALUES ('Nhonho', 'Barriga', '45818274004', 'nhonho@chaves.com.br', true, null);
 
 -- Database microsserviço Produto
 CREATE DATABASE BD_PKFF_PRODUTOS;
