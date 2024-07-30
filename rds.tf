@@ -1,5 +1,4 @@
 resource "aws_db_instance" "rds" {
-  db_name                 = var.dbName
   engine                  = var.engineRds
   engine_version          = var.engineRdsVersion
   identifier              = "rds-${var.projectName}"
@@ -17,7 +16,5 @@ resource "aws_db_instance" "rds" {
   publicly_accessible     = true
   deletion_protection     = false
   backup_retention_period = 0
-  # backup_window                = "00:00-00:30"
-  # copy_tags_to_snapshot        = true
   delete_automated_backups = true
 }
